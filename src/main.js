@@ -26,9 +26,11 @@ scene.add(cube);
 const mainTimeline = new TimelineLite({ paused: true });
 mainTimeline
   .set(camera.position, { z: 10 })
-  .to(camera.position, 16, { z: 2 })
-  .to(cube.rotation, 60, { onUpdate: moveCubeToSpectrum })
-  .to(cube.rotation, 120, { onUpdate: moveCubeToWaveform });
+  .set(cube.rotation, {x: 360, y: 360})
+  .to(camera.position, 10, { z: 2 })
+  .to(cube.rotation, 20, { onUpdate: moveCubeToSpectrum })
+  .to(cube.rotation, 20, { onUpdate: moveCubeToWaveform })
+  .to(cube.rotation, 60, { onUpdate: moveCubeToSpectrum });
 
 // Setup audio processing
 const audioContext = new AudioContext();
