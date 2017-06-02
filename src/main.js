@@ -24,6 +24,13 @@ const material = new three.MeshNormalMaterial({ wireframe: true });
 const cube = new three.Mesh(geometry, material);
 scene.add(cube);
 
+for (let i = 0; i < 300; i += 1) {
+  let cube = new three.Mesh(geometry, material);
+  cube.position.x = (Math.round(Math.random()) * 2 - 1) * Math.random();
+  cube.position.y = (Math.round(Math.random()) * 2 - 1) * Math.random();
+  scene.add(cube);
+}
+
 // GSAP timeline
 const mainTimeline = new TimelineLite({ paused: true });
 mainTimeline
@@ -54,14 +61,14 @@ audioAnalyser.connect(audioContext.destination);
 
 function moveCubeToSpectrum() {
   audioAnalyser.getByteFrequencyData(spectrum);
-  var average = spectrum.reduce((a, b) => a + b) / spectrum.length;
+  const average = spectrum.reduce((a, b) => a + b) / spectrum.length;
   cube.rotation.x += average / 1000;
   cube.rotation.y += average / 1000;
 }
 
 function moveCubeToWaveform() {
   audioAnalyser.getFloatTimeDomainData(waveform);
-  var average = waveform.reduce((a, b) => a + b) / waveform.length;
+  const average = waveform.reduce((a, b) => a + b) / waveform.length;
   cube.rotation.x += average;
   cube.rotation.y += average;
 }
