@@ -2,6 +2,14 @@ const gsap = require('gsap');
 const three = require('three');
 const canvasResizer = require('./canvas-resizer.js')
 
+const stats = require('stats.js');
+const panels = new stats();
+document.body.appendChild(panels.dom);
+requestAnimationFrame(function loop() {
+  panels.update();
+  requestAnimationFrame(loop)
+});
+
 // Setup basics to render
 const scene = new three.Scene();
 const camera = new three.PerspectiveCamera(
