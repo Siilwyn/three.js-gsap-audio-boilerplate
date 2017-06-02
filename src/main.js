@@ -18,9 +18,13 @@ const camera = new three.PerspectiveCamera(
   0.1,
   1000
 );
+const canvas = document.querySelector('[data-renderer]');
+const offscreen = canvas.transferControlToOffscreen();
+const renderContext = offscreen.getContext('webgl');
+offscreen.style = { width: 0, height: 0 }; // Style stub
 const renderer = new three.WebGLRenderer({
   antialias: true,
-  canvas: document.querySelector('[data-renderer]')
+  canvas: offscreen,
 });
 renderer.setClearColor(0xeeeeee);
 
@@ -84,4 +88,5 @@ function moveCubeToWaveform() {
 TweenLite.ticker.addEventListener('tick', render);
 function render() {
   renderer.render(scene, camera);
+  renderContext.commit();
 }
