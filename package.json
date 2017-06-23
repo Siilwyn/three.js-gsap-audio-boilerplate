@@ -4,7 +4,7 @@
   "description": "",
   "main": "./src/main.js",
   "scripts": {
-    "start": "webpack-dev-server --content-base=src --hot --inline --watch",
+    "start": "webpack-dev-server --hot --inline --watch",
     "build": "webpack -p"
   },
   "keywords": [],

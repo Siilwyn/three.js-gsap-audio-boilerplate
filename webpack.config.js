@@ -1,15 +1,17 @@
 const path = require('path');
 
 const config = {
-  context: path.join(__dirname, 'src'),
-  entry: [
-    './main.js',
-  ],
+  // Input
+  entry: './src/main.js',
+
+  // Output
   output: {
     path: path.join(__dirname, 'dist'),
     filename: 'bundle.js',
     publicPath: '/',
   },
+
+  // Transformations
   module: {
     rules: [
       {
@@ -23,6 +25,15 @@ const config = {
         },
       },
     ],
+  },
+
+  // Source maps
+  devtool: 'source-map',
+
+  // Server
+  devServer: {
+    contentBase: path.join(__dirname, 'src'),
+    compress: true,
   },
 };
 module.exports = config;
