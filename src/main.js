@@ -1,11 +1,12 @@
 const gsap = require('gsap');
 const three = require('three');
+const canvasResizer = require('./canvas-resizer.js')
 
 // Setup basics to render
 const scene = new three.Scene();
 const camera = new three.PerspectiveCamera(
   75,
-  window.innerWidth/window.innerHeight,
+  window.innerWidth / window.innerHeight,
   0.1,
   1000
 );
@@ -13,8 +14,9 @@ const renderer = new three.WebGLRenderer({
   antialias: true,
   canvas: document.querySelector('[data-renderer]')
 });
-renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.setClearColor(0xeeeeee);
+
+canvasResizer(camera, renderer);
 
 // Add basic cube
 const geometry = new three.BoxGeometry(1, 1, 1);
@@ -26,7 +28,7 @@ scene.add(cube);
 const mainTimeline = new TimelineLite({ paused: true });
 mainTimeline
   .set(camera.position, { z: 10 })
-  .set(cube.rotation, {x: 360, y: 360})
+  .set(cube.rotation, { x: 360, y: 360 })
   .to(camera.position, 10, { z: 2 })
   .to(cube.rotation, 20, { onUpdate: moveCubeToSpectrum })
   .to(cube.rotation, 20, { onUpdate: moveCubeToWaveform })
