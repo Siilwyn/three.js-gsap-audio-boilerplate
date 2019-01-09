@@ -12,11 +12,11 @@
   "license": "ISC",
   "dependencies": {
     "gsap": "^2.0.2",
-    "three": "^0.96.0"
+    "three": "^0.100.0"
   },
   "devDependencies": {
-    "webpack": "^4.19.0",
-    "webpack-cli": "^3.1.0",
-    "webpack-dev-server": "^3.1.8"
+    "webpack": "^4.28.1",
+    "webpack-cli": "^3.2.1",
+    "webpack-dev-server": "^3.1.14"
   }
 }
